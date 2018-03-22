@@ -12,13 +12,12 @@ setLocal EnableDelayedExpansion
  set folderPrefix=%2
  set filePrefix=%3
  set maxNum=%4
+ rmdir %root% /s/q
  set folderCount=1
  set subFolderCount=1
  set fileCount=1
-echo %fileCount%
  :createFolder
  if %folderCount% LEQ %maxNum% (
-   echo foldercount %folderCount%
    set folderName=%folderPrefix%%folderCount%
   
    :createSubFolder
@@ -31,7 +30,6 @@ echo %fileCount%
         if %fileCount% LEQ %folderCount% (
           set fileName=%filePrefix%%subFolderCount%%fileCount%.txt
           type nul >> "!root!/!folderName!/!subFolderName!/!fileName!"
-          echo fileCount %fileCount%
           set /a fileCount+=1
           goto :makeFile
         )
